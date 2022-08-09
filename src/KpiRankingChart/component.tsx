@@ -73,19 +73,27 @@ export class KpiRankingChart extends React.Component<{}> {
                                 return (
                                     <div className="countries-card">
                                         <div className="scope-label">
-                                            {ranking[1]}
+                                            {ranking[2]}
                                             <div className="yellow-rank-number">
                                                 {ranking[4]}
                                             </div>
                                         </div>
                                         <div className="balance-card">
-                                            <h2>{ranking[2]}</h2>
+                                            <h2>{ranking[1]}</h2>
                                             <div className="kpi-card">
                                                 {RankingData.map((kpi) => {
                                                     return (
-                                                        <div className="kpi-square">
-
-                                                        </div>
+                                                        <div className={`kpi-square theme-red-top`}/>
+                                                    )
+                                                })}
+                                                {RankingData.map((kpi) => {
+                                                    return (
+                                                        <div className={`kpi-square theme-yellow-top`}/>
+                                                    )
+                                                })}
+                                                {RankingData.map((kpi) => {
+                                                    return (
+                                                        <div className={`kpi-square theme-green-top`}/>
                                                     )
                                                 })}
                                             </div>
