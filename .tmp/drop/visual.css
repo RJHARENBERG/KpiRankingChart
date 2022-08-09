@@ -24,6 +24,8 @@ p {
 .countries-card {
   display: flex;
   flex-direction: row;
+  border-bottom: solid 1px gray;
+  margin: 5px;
 }
 .scope-label {
   position: relative;
@@ -62,10 +64,10 @@ p {
   display: flex;
 }
 .kpi-square {
-  background: #fb0000;
   margin: 1px;
   width: 15px;
   height: 15px;
+  border-radius: 3px;
 }
 .theme-yellow-top {
   background: #ffde00;
