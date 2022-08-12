@@ -1,35 +1,6 @@
 {
     "dataRoles": [
-        {
-            "displayName": "id",
-            "name": "id",
-            "kind": "Grouping"
-        },
-        {
-            "displayName": "scope",
-            "name": "scope",
-            "kind": "Measure"
-        },
-        {
-            "displayName": "ISO",
-            "name": "ISO",
-            "kind": "Measure"
-        },
-        {
-            "displayName": "status red",
-            "name": "status red",
-            "kind": "Measure"
-        },
-        {
-            "displayName": "status yellow",
-            "name": "status yellow",
-            "kind": "Measure"
-        },
-        {
-            "displayName": "status green",
-            "name": "status green",
-            "kind": "Measure"
-        }
+
     ],
 
     "objects": {},

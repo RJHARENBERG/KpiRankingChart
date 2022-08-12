@@ -1,6 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  //box-sizing: border-box;
+}
+
+:root {
+  --yelloow-yellow: #FFBF00;
+  --yelloow-green: #4BBF73;
+  --yelloow-red: #D9534F;
+  --yelloow-darkgray: #9497A1;
+
+  --yelloow-yellow-gradient: linear-gradient(0deg, rgba(255, 191, 0, 0.85) 0%, rgba(255, 191, 0, 1) 100%);
+  --yelloow-green-gradient: linear-gradient(0deg, rgba(75, 191, 115, 0.85) 0%, rgba(75, 191, 115, 1) 100%);;
+  --yelloow-red-gradient: linear-gradient(0deg, rgba(217, 83, 79, 0.85) 0%, rgba(217, 83, 79, 1) 100%);
+}
 
 h1 {
-  margin: 0 0 0 5px;
+  font-size: 13px;
+  margin: 0 0 0 15px;
 }
 
 h2 {
@@ -36,7 +53,7 @@ p {
   display: flex;
   flex-direction: row;
 
-  border-bottom: solid 1px gray;
+  border-bottom: solid 1px var(--yelloow-darkgray);
   margin: 5px;
 }
 
@@ -47,9 +64,9 @@ p {
   justify-content: center;
   align-items: center;
 
-  width: 30px;
-  height: 30px;
-  background: gray;
+  width: 15px;
+  height: 15px;
+  background: var(--yelloow-darkgray);
   border-radius: 5px;
   padding: 10px;
   color: white;
@@ -67,15 +84,15 @@ p {
 
   border-radius: 50px;
   padding: 5px;
-  top: -10px;
-  right: -10px;
+  top: -5px;
+  right: -5px;
 
-  height: 15px;
-  width: 15px;
+  height: 5px;
+  width: 5px;
 
-  background: #fdc62d;
+  background: var(--yelloow-yellow);
 
-  font-size: 15px;
+  font-size: 8px;
 }
 
 .balance-card {
@@ -89,37 +106,33 @@ p {
 }
 
 .kpi-square {
-  margin: 1px;
+  margin: 0.5px;
 
-  width: 15px;
-  height: 15px;
-
-  border-radius: 3px;
+  width: 10px;
+  height: 10px;
 }
 
 .theme-yellow-top {
-  background: rgb(255, 222, 0);
-  background: linear-gradient(0deg, rgba(255, 222, 0, 1) 0%, rgba(253, 198, 45, 1) 100%);
+  background: var(--yelloow-yellow-gradient)
 }
 
 .theme-yellow-bottom {
-  background: #fdc62d;
+  background: var(--yelloow-yellow);
 }
 
 .theme-red-top {
-  background: rgb(255, 70, 70);
-  background: linear-gradient(0deg, rgba(255, 70, 70, 1) 0%, rgba(251, 0, 0, 1) 100%);
+  background: var(--yelloow-red-gradient)
 }
 
 .theme-red-bottom {
-  background: #fb0000;
+  background: var(--yelloow-red);
+
 }
 
 .theme-green-top {
-  background: rgb(0, 255, 38);
-  background: linear-gradient(0deg, rgba(0, 255, 38, 1) 0%, rgba(2, 210, 5, 1) 100%);
+  background: var(--yelloow-green-gradient);
 }
 
 .theme-green-bottom {
-  background: #02d205;
+  background: var(--yelloow-green);
 }

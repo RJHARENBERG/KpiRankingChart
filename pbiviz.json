@@ -5,14 +5,14 @@
     "guid": "kpiRankingChartE8BF0643FBB94F4682E47256EED18689",
     "visualClassName": "Visual",
     "version": "1.0.0",
-    "description": "",
-    "supportUrl": "",
+    "description": "kpi ranking chart",
+    "supportUrl": "no thanks",
     "gitHubUrl": ""
   },
   "apiVersion": "3.8.0",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Reinard Harenberg",
+    "email": "reinardharenberg@gmail.com"
   },
   "assets": {
     "icon": "assets/icon.png"

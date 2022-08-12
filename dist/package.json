@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0",
+    "author": {"name":"Reinard Harenberg","email":"reinardharenberg@gmail.com"},
+    "resources": [
+        {
+            "resourceId": "rId0",
+            "sourceType": 5,
+            "file": "resources/kpiRankingChartE8BF0643FBB94F4682E47256EED18689.pbiviz.json"
+        }
+    ],
+    "visual": {"name":"kpiRankingChart","displayName":"KpiRankingChart","guid":"kpiRankingChartE8BF0643FBB94F4682E47256EED18689","visualClassName":"Visual","version":"1.0.0","description":"kpi ranking chart","supportUrl":"no thanks","gitHubUrl":""},
+    "metadata": {
+        "pbivizjson": {
+            "resourceId": "rId0"
+        }
+    }  
+}
