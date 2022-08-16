@@ -546,6 +546,7 @@ class Visual {
     constructor(options) {
         this.reactRoot = react__WEBPACK_IMPORTED_MODULE_0__.createElement(_KpiRankingChart_component__WEBPACK_IMPORTED_MODULE_2__/* .KpiRankingChart */ .Iq, {});
         this.target = options.element;
+        // this.host = options.host;
         react_dom__WEBPACK_IMPORTED_MODULE_1__.render(this.reactRoot, this.target);
     }
     /**Uw visual instellen op het ontvangen van gegevens

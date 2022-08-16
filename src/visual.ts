@@ -14,6 +14,7 @@ import "./../style/visual.less";
 /**Het bestand visual.ts configureren
  * Haal de huidige grootte van de visual-viewport op uit het object options.*/
 import IViewport = powerbi.IViewport;
+import IVisualHost = powerbi.extensibility.IVisualHost;
 
 /**Omdat standaard Power BI TypeScript-instellingen niet worden herkend React tsx-bestanden
  * Als u het onderdeel wilt weergeven, voegt u het HTML-doelelement toe aan visual.ts. Dit element bevindt zich
@@ -22,11 +23,15 @@ export class Visual implements IVisual {
     private target: HTMLElement;
     private reactRoot: React.ComponentElement<any, any>;
 
+    // private host: IVisualHost;
+
     private viewport: IViewport;
 
     constructor(options: VisualConstructorOptions) {
         this.reactRoot = React.createElement(KpiRankingChart, {});
         this.target = options.element;
+
+        // this.host = options.host;
 
         ReactDOM.render(this.reactRoot, this.target);
     }
@@ -40,6 +45,7 @@ export class Visual implements IVisual {
         if(options.dataViews && options.dataViews[0]){
             const dataView: DataView = options.dataViews[0];
 
+
             this.viewport = options.viewport;
             const { width, height } = this.viewport;
             const size = Math.min(width, height);
@@ -47,7 +53,6 @@ export class Visual implements IVisual {
             KpiRankingChart.update({
                 RankingData: dataView.table.rows,
                 size
-
             });
         } else {
             this.clear();
