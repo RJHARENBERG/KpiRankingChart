@@ -497,10 +497,10 @@ class KpiRankingChart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "ranking-card" }, RankingData.map((ranking) => {
                         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "countries-card" },
                             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "scope-label" },
-                                ranking[1],
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "yellow-rank-number" }, ranking[4])),
+                                ranking[0],
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "yellow-rank-number" })),
                             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "balance-card" },
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, ranking[2]),
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null),
                                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "kpi-card" },
                                     RankingData.map((kpi) => {
                                         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `kpi-square theme-red-top` }));
@@ -560,7 +560,8 @@ class Visual {
             const { width, height } = this.viewport;
             const size = Math.min(width, height);
             _KpiRankingChart_component__WEBPACK_IMPORTED_MODULE_2__/* .KpiRankingChart.update */ .Iq.update({
-                RankingData: dataView.table.rows,
+                // RankingData: dataView.table.rows,
+                RankingData: dataView.matrix.rows.root.children,
                 size
             });
         }

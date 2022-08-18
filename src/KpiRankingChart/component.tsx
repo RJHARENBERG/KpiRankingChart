@@ -1,15 +1,4 @@
 import * as React from "react";
-
-
-interface data {
-    id: number,
-    scope: string,
-    iso: string,
-    red: number,
-    yellow: number,
-    green: number
-}
-
 /**Gegevens weergeven met React
  *
  * U kunt gegevens weergeven met React. Het onderdeel kan gegevens weergeven op basis van de eigen status.*/
@@ -60,7 +49,6 @@ export class KpiRankingChart extends React.Component<{}> {
     render() {
         const {RankingData, size} = this.state;
         console.log(RankingData)
-
         const style: React.CSSProperties = {width: size, height: size};
 
         return (
@@ -73,13 +61,13 @@ export class KpiRankingChart extends React.Component<{}> {
                                 return (
                                     <div className="countries-card">
                                         <div className="scope-label">
-                                            {ranking[1]}
+                                            {ranking[0]}
                                             <div className="yellow-rank-number">
-                                                {ranking[4]}
+
                                             </div>
                                         </div>
                                         <div className="balance-card">
-                                            <h2>{ranking[2]}</h2>
+                                            <h2></h2>
                                             <div className="kpi-card">
                                                 {RankingData.map((kpi) => {
                                                     return (

@@ -51,7 +51,8 @@ export class Visual implements IVisual {
             const size = Math.min(width, height);
 
             KpiRankingChart.update({
-                RankingData: dataView.table.rows,
+                // RankingData: dataView.table.rows,
+                RankingData: dataView.matrix.rows.root.children,
                 size
             });
         } else {
