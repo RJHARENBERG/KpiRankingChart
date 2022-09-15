@@ -52,7 +52,7 @@ export class Visual implements IVisual {
 
             KpiRankingChart.update({
                 // RankingData: dataView.table.rows,
-                RankingData: dataView.matrix.rows.root.children,
+                RankingData: dataView.table.rows,
                 size
             });
         } else {

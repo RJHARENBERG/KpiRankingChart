@@ -1,21 +1,13 @@
 {
     "dataRoles": [
         {
-            "name": "Category",
-            "displayName": "Category",
-            "displayNameKey": "Visual_Category",
-            "kind": "Grouping"
-        },
-        {
-            "name": "Column",
             "displayName": "Column",
-            "displayNameKey": "Visual_Column",
+            "name": "column",
             "kind": "Grouping"
         },
         {
-            "name": "Measure",
-            "displayName": "Measure",
-            "displayNameKey": "Visual_Values",
+            "displayName": "Value",
+            "name": "value",
             "kind": "Measure"
         }
     ],
@@ -24,22 +16,17 @@
 
     "dataViewMappings": [
         {
-            "matrix": {
+            "table": {
                 "rows": {
-                    "for": {
-                        "in": "Category"
-                    }
-                },
-                "columns": {
-                    "for": {
-                        "in": "Column"
-                    }
-                },
-                "values": {
                     "select": [
                         {
                             "for": {
-                                "in": "Measure"
+                                "in": "column"
+                            }
+                        },
+                        {
+                            "for": {
+                                "in": "value"
                             }
                         }
                     ]

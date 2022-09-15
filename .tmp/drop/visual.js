@@ -488,8 +488,40 @@ class KpiRankingChart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     /** het renderen van het react component */
     render() {
         const { RankingData, size } = this.state;
-        console.log(RankingData);
         const style = { width: size, height: size };
+        //check of scope al in listOfSortOutRankingData zit
+        //als scope nog niet aanwezig is pus nieuw country object
+        //als scoop al wel bestaat pus allen de status waarden in de status array van die scoop
+        // const listOfSortOutRankingData = RankingData.reduce((obj,cur)=>({...obj,[cur[0]]: cur}),{})
+        //
+        // console.log(listOfSortOutRankingData)
+        //
+        // const countries: country[] = []
+        let countryList;
+        const country = {
+            scoop: "Africa",
+            ISO: "AF",
+            status: [..."red", "yellow", "green"],
+        };
+        // countryList.push(country);
+        function setData(data) {
+            const test = {
+                scoop: "",
+                ISO: "",
+                status: [],
+            };
+            data.filter((obj) => {
+                if (obj[3] === "Africa") {
+                    test.scoop = obj[3];
+                    test.ISO = obj[2];
+                    test.status = [...test.status, obj[1]];
+                }
+            });
+            // countryList.push(test)
+            console.log(countryList);
+        }
+        setData(RankingData);
+        console.log(countryList);
         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "container", style: style },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "wrapper" },
@@ -515,7 +547,6 @@ class KpiRankingChart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     }
 }
 /**Uw visual instellen om gegevens te verzenden
- *
  * In deze sectie werkt u uw visual bij om updates te verzenden naar exemplaren in het onderdeelbestand .*/
 KpiRankingChart.updateCallback = null;
 /* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ((/* unused pure expression or super */ null && (KpiRankingChart)));
@@ -561,7 +592,7 @@ class Visual {
             const size = Math.min(width, height);
             _KpiRankingChart_component__WEBPACK_IMPORTED_MODULE_2__/* .KpiRankingChart.update */ .Iq.update({
                 // RankingData: dataView.table.rows,
-                RankingData: dataView.matrix.rows.root.children,
+                RankingData: dataView.table.rows,
                 size
             });
         }

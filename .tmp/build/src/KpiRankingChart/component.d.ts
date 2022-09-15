@@ -1,16 +1,19 @@
 import * as React from "react";
 /**Gegevens weergeven met React
- *
  * U kunt gegevens weergeven met React. Het onderdeel kan gegevens weergeven op basis van de eigen status.*/
 export interface State {
     RankingData: object[];
     size: number;
 }
 export declare const initialState: State;
+export interface country {
+    scoop?: string;
+    ISO?: string;
+    status?: Array<string>;
+}
 export declare class KpiRankingChart extends React.Component<{}> {
     constructor(props: any);
     /**Uw visual instellen om gegevens te verzenden
-     *
      * In deze sectie werkt u uw visual bij om updates te verzenden naar exemplaren in het onderdeelbestand .*/
     private static updateCallback;
     static update(newState: State): void;
