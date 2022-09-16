@@ -15,7 +15,7 @@ export const initialState: State = {
 export interface country {
     scoop?: string,
     ISO?: string,
-    status?: Array<string>,
+    status?: string[],
 }
 
 export class KpiRankingChart extends React.Component<{}> {
@@ -54,51 +54,35 @@ export class KpiRankingChart extends React.Component<{}> {
         const {RankingData, size} = this.state;
         const style: React.CSSProperties = {width: size, height: size};
 
-        //check of scope al in listOfSortOutRankingData zit
-        //als scope nog niet aanwezig is pus nieuw country object
-        //als scoop al wel bestaat pus allen de status waarden in de status array van die scoop
+        let countryList: country[] = new Array<country>();
 
-        // const listOfSortOutRankingData = RankingData.reduce((obj,cur)=>({...obj,[cur[0]]: cur}),{})
-        //
-        // console.log(listOfSortOutRankingData)
-        //
-        // const countries: country[] = []
-
-        let countryList: {
-            scoop: string ,
-            ISO: string,
-            status:string[]
-        }[];
-
-        const country = {
-            scoop: "Africa",
-            ISO: "AF",
-            status: [..."red", "yellow", "green"],
-        }
-
-        // countryList.push(country);
-
+        // const europa = {
+        //     scoop: "Europa",
+        //     ISO: "EU",
+        //     status: ["red", "yellow", "green"],
+        // }
+        // countryList.push(europa)
 
         function setData(data) {
-            const test = {
+            const country: country = {
                 scoop: "",
                 ISO: "",
                 status: [],
             };
             data.filter((obj) => {
-                if (obj[3] === "Africa") {
-                    test.scoop = obj[3]
-                    test.ISO = obj[2]
-                    test.status = [...test.status, obj[1]]
+                if (obj[3] === "American's") {
+                    country.scoop = obj[3]
+                    country.ISO = obj[2]
+                    country.status = [...country.status, obj[1]]
                 }
             })
-            // countryList.push(test)
-            console.log(countryList)
+            countryList.push(country)
         }
-
         setData(RankingData)
-        console.log(countryList)
 
+
+        console.log(countryList)
+        console.log(RankingData)
 
         return (
             <>
@@ -106,32 +90,30 @@ export class KpiRankingChart extends React.Component<{}> {
                     <div className="wrapper">
                         <h1>Ranking</h1>
                         <div className="ranking-card">
-                            {RankingData.map((ranking) => {
+                            {countryList.map((ranking) => {
                                 return (
                                     <div className="countries-card">
                                         <div className="scope-label">
-                                            {ranking[0]}
+                                            {ranking.ISO}
                                             <div className="yellow-rank-number">
-
+                                                {ranking.status.length}
                                             </div>
                                         </div>
                                         <div className="balance-card">
-                                            <h2></h2>
+                                            <h2>{ranking.scoop}</h2>
+
                                             <div className="kpi-card">
-                                                {RankingData.map((kpi) => {
-                                                    return (
-                                                        <div className={`kpi-square theme-red-top`}/>
-                                                    )
-                                                })}
-                                                {RankingData.map((kpi) => {
-                                                    return (
-                                                        <div className={`kpi-square theme-yellow-top`}/>
-                                                    )
-                                                })}
-                                                {RankingData.map((kpi) => {
-                                                    return (
-                                                        <div className={`kpi-square theme-green-top`}/>
-                                                    )
+                                                {ranking.status.map((color) => {
+                                                    if (color === "red") {
+                                                        return <div className={`kpi-square theme-red-top`}/>
+                                                    }
+                                                    if (color === "yellow") {
+                                                        return <div className={`kpi-square theme-yellow-top`}/>
+                                                    }
+                                                    if (color === "green") {
+                                                        return <div className={`kpi-square theme-green-top`}/>
+                                                    }
+
                                                 })}
                                             </div>
                                         </div>

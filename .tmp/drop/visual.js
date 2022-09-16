@@ -489,65 +489,58 @@ class KpiRankingChart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     render() {
         const { RankingData, size } = this.state;
         const style = { width: size, height: size };
-        //check of scope al in listOfSortOutRankingData zit
-        //als scope nog niet aanwezig is pus nieuw country object
-        //als scoop al wel bestaat pus allen de status waarden in de status array van die scoop
-        // const listOfSortOutRankingData = RankingData.reduce((obj,cur)=>({...obj,[cur[0]]: cur}),{})
-        //
-        // console.log(listOfSortOutRankingData)
-        //
-        // const countries: country[] = []
-        let countryList;
-        const country = {
-            scoop: "Africa",
-            ISO: "AF",
-            status: [..."red", "yellow", "green"],
-        };
-        // countryList.push(country);
+        let countryList = new Array();
+        // const europa = {
+        //     scoop: "Europa",
+        //     ISO: "EU",
+        //     status: ["red", "yellow", "green"],
+        // }
+        // countryList.push(europa)
         function setData(data) {
-            const test = {
+            const country = {
                 scoop: "",
                 ISO: "",
                 status: [],
             };
             data.filter((obj) => {
-                if (obj[3] === "Africa") {
-                    test.scoop = obj[3];
-                    test.ISO = obj[2];
-                    test.status = [...test.status, obj[1]];
+                if (obj[3] === "American's") {
+                    country.scoop = obj[3];
+                    country.ISO = obj[2];
+                    country.status = [...country.status, obj[1]];
                 }
             });
-            // countryList.push(test)
-            console.log(countryList);
+            countryList.push(country);
         }
         setData(RankingData);
         console.log(countryList);
+        console.log(RankingData);
         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "container", style: style },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "wrapper" },
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Ranking"),
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "ranking-card" }, RankingData.map((ranking) => {
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "ranking-card" }, countryList.map((ranking) => {
                         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "countries-card" },
                             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "scope-label" },
-                                ranking[0],
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "yellow-rank-number" })),
+                                ranking.ISO,
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "yellow-rank-number" }, ranking.status.length)),
                             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "balance-card" },
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null),
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "kpi-card" },
-                                    RankingData.map((kpi) => {
-                                        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `kpi-square theme-red-top` }));
-                                    }),
-                                    RankingData.map((kpi) => {
-                                        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `kpi-square theme-yellow-top` }));
-                                    }),
-                                    RankingData.map((kpi) => {
-                                        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `kpi-square theme-green-top` }));
-                                    })))));
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, ranking.scoop),
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "kpi-card" }, ranking.status.map((color) => {
+                                    if (color === "red") {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `kpi-square theme-red-top` });
+                                    }
+                                    if (color === "yellow") {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `kpi-square theme-yellow-top` });
+                                    }
+                                    if (color === "green") {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `kpi-square theme-green-top` });
+                                    }
+                                })))));
                     }))))));
     }
 }
 /**Uw visual instellen om gegevens te verzenden
- * In deze sectie werkt u uw visual bij om updates te verzenden naar exemplaren in het onderdeelbestand .*/
+ * In deze sectie werkt u uw visual bij om updates te verzenden naar exemplaren in het onderdeelbestand.*/
 KpiRankingChart.updateCallback = null;
 /* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ((/* unused pure expression or super */ null && (KpiRankingChart)));
 
