@@ -512,8 +512,20 @@ class KpiRankingChart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
             countryList.push(country);
         }
         setData(RankingData);
+        // const countryList2 = RankingData.reduce((previousValue, currentValue) =>{
+        //     const scoop = currentValue.
+        // })
+        // countryList2(RankingData)
         console.log(countryList);
         console.log(RankingData);
+        const countryList2 = RankingData.reduce((groupedByScoop, country, n, o) => {
+            const scoop = country[3];
+            if (groupedByScoop[scoop] == null)
+                groupedByScoop[scoop] = [];
+            groupedByScoop[scoop].push(country);
+            return groupedByScoop;
+        }, {});
+        console.log(countryList2);
         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "container", style: style },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "wrapper" },
@@ -522,7 +534,7 @@ class KpiRankingChart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
                         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "countries-card" },
                             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "scope-label" },
                                 ranking.ISO,
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "yellow-rank-number" }, ranking.status.length)),
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "yellow-rank-number" }, ranking.status)),
                             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "balance-card" },
                                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, ranking.scoop),
                                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "kpi-card" }, ranking.status.map((color) => {
@@ -540,7 +552,7 @@ class KpiRankingChart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     }
 }
 /**Uw visual instellen om gegevens te verzenden
- * In deze sectie werkt u uw visual bij om updates te verzenden naar exemplaren in het onderdeelbestand.*/
+ * In deze sectie werkt u uw visual bij om updates te verzenden naar exemplaren in het onderdeelbestand .*/
 KpiRankingChart.updateCallback = null;
 /* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ((/* unused pure expression or super */ null && (KpiRankingChart)));
 

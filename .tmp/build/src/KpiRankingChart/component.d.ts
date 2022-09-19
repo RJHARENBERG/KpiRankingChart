@@ -14,7 +14,7 @@ export interface country {
 export declare class KpiRankingChart extends React.Component<{}> {
     constructor(props: any);
     /**Uw visual instellen om gegevens te verzenden
-     * In deze sectie werkt u uw visual bij om updates te verzenden naar exemplaren in het onderdeelbestand.*/
+     * In deze sectie werkt u uw visual bij om updates te verzenden naar exemplaren in het onderdeelbestand .*/
     private static updateCallback;
     static update(newState: State): void;
     state: State;

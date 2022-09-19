@@ -80,7 +80,10 @@ export class KpiRankingChart extends React.Component<{}> {
         }
         setData(RankingData)
 
-
+        // const countryList2 = RankingData.reduce((previousValue, currentValue) =>{
+        //     const scoop = currentValue.
+        // })
+        // countryList2(RankingData)
         console.log(countryList)
         console.log(RankingData)
 
@@ -91,12 +94,13 @@ export class KpiRankingChart extends React.Component<{}> {
                         <h1>Ranking</h1>
                         <div className="ranking-card">
                             {countryList.map((ranking) => {
+
                                 return (
                                     <div className="countries-card">
                                         <div className="scope-label">
                                             {ranking.ISO}
                                             <div className="yellow-rank-number">
-                                                {ranking.status.length}
+                                                {ranking.status}
                                             </div>
                                         </div>
                                         <div className="balance-card">
@@ -127,5 +131,6 @@ export class KpiRankingChart extends React.Component<{}> {
         )
     }
 }
+
 
 export default KpiRankingChart;
