@@ -490,12 +490,40 @@ class KpiRankingChart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
         const { RankingData, size } = this.state;
         const style = { width: size, height: size };
         let countryList = new Array();
-        // const europa = {
-        //     scoop: "Europa",
-        //     ISO: "EU",
-        //     status: ["red", "yellow", "green"],
-        // }
-        // countryList.push(europa)
+        /** -----------------hard coded objecten------------------- */
+        const american = {
+            scoop: "American's",
+            ISO: "AM",
+            status: [
+                "red", "red", "red", "red",
+                "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow",
+                "yellow", "yellow",
+                "green", "green", "green",
+            ],
+        };
+        countryList.push(american);
+        const africa = {
+            scoop: "Africa",
+            ISO: "AF",
+            status: ["red", "red", "red", "red", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow",
+                "yellow", "yellow", "yellow", "yellow", "green", "green", "green", "green",],
+        };
+        countryList.push(africa);
+        const europa = {
+            scoop: "Europa",
+            ISO: "EU",
+            status: ["red", "red", "red", "red", "red", "red", "red", "yellow", "yellow", "yellow", "yellow", "yellow",
+                "yellow", "yellow", "yellow", "yellow", "green", "green", "green",],
+        };
+        countryList.push(europa);
+        const asia = {
+            scoop: "Asia",
+            ISO: "AS",
+            status: ["red", "red", "red", "red", "red", "red", "red", "yellow", "yellow", "yellow", "yellow", "yellow",
+                "yellow", "yellow", "green", "green", "green", "green", "green",],
+        };
+        countryList.push(asia);
+        /** ----------------RankingData status sorteren op scoop------------------ */
         function setData(data) {
             const country = {
                 scoop: "",
@@ -512,12 +540,12 @@ class KpiRankingChart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
             countryList.push(country);
         }
         setData(RankingData);
-        // const countryList2 = RankingData.reduce((previousValue, currentValue) =>{
-        //     const scoop = currentValue.
-        // })
-        // countryList2(RankingData)
-        console.log(countryList);
         console.log(RankingData);
+        console.log(countryList);
+        /** -----------------dynamisch maken------------------- */
+        /**het dynamisch object moet er net zo uit zien als de countriesList, maar dan gevuld met de data uit RankingData
+         * dit object komt namelijk via de "class visual.ts" door de state uit power bi
+         */
         const countryList2 = RankingData.reduce((groupedByScoop, country, n, o) => {
             const scoop = country[3];
             if (groupedByScoop[scoop] == null)
@@ -525,27 +553,80 @@ class KpiRankingChart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
             groupedByScoop[scoop].push(country);
             return groupedByScoop;
         }, {});
+        // const countryListToArray = Object.keys(countryList2).map((key) => {
+        //     return {[key]: countryList2[key as keyof typeof countryList2]};
+        // });
+        // for (let i = 0; i < countryListToArray.length; i++) {
+        //     const oldKey = Object.keys(countryListToArray[i])[0]
+        //     console.log(oldKey)
+        // }
         console.log(countryList2);
+        // console.log(countryListToArray)
+        /** -----------------hier onder wordt door react de visual dynamisch gerenderd op het dashboard------------- */
+        /** de styling vind je terus in visual.less. de className verwijst naar de css die in die div gebruikt wordt.
+         * alles is met flexbox uitgelijnd*/
         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "container", style: style },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "wrapper" },
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Ranking"),
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "ranking-card" }, countryList.map((ranking) => {
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "ranking-card" }, countryList.map((data, index, array) => {
                         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "countries-card" },
                             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "scope-label" },
-                                ranking.ISO,
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "yellow-rank-number" }, ranking.status)),
+                                data.ISO,
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "yellow-rank-number" }, data.status.filter(x => x == 'yellow').length)),
                             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "balance-card" },
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, ranking.scoop),
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "kpi-card" }, ranking.status.map((color) => {
-                                    if (color === "red") {
-                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `kpi-square theme-red-top` });
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, data.scoop),
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "kpi-card" }, data.status.map((statusColor, index, array) => {
+                                    if (statusColor === "red" && index + 1 === array.length) {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `
+                                                        kpi-square 
+                                                        theme-red-top 
+                                                        kpi-square-right-radius` });
                                     }
-                                    if (color === "yellow") {
-                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `kpi-square theme-yellow-top` });
+                                    if (statusColor === "red" && index !== 0) {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `
+                                                        kpi-square 
+                                                        theme-red-top` });
                                     }
-                                    if (color === "green") {
-                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `kpi-square theme-green-top` });
+                                    if (statusColor === "red" && index === 0) {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `
+                                                        kpi-square 
+                                                        theme-red-top 
+                                                        kpi-square-lef-radius` });
+                                    }
+                                    if (statusColor === "yellow" && index + 1 === array.length) {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `
+                                                        kpi-square 
+                                                        theme-yellow-top 
+                                                        kpi-square-right-radius` });
+                                    }
+                                    if (statusColor === "yellow" && index !== 0) {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `
+                                                        kpi-square 
+                                                        theme-yellow-top` });
+                                    }
+                                    if (statusColor === "yellow" && index === 0) {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `
+                                                        kpi-square 
+                                                        theme-yellow-top 
+                                                        kpi-square-lef-radius` });
+                                    }
+                                    if (statusColor === "green" && index + 1 === array.length) {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `
+                                                        kpi-square 
+                                                        theme-green-top 
+                                                        kpi-square-right-radius` });
+                                    }
+                                    if (statusColor === "green" && index !== 0) {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `
+                                                        kpi-square 
+                                                        theme-green-top` });
+                                    }
+                                    if (statusColor === "green" && index === 0) {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: `
+                                                        kpi-square 
+                                                        theme-green-top 
+                                                        kpi-square-lef-radius` });
                                     }
                                 })))));
                     }))))));
