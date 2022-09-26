@@ -173,4 +173,5 @@ export class KpiRankingChart extends React.Component<{}> {
         )
     }
 }
+
 export default KpiRankingChart;
